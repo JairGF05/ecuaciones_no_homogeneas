@@ -1,0 +1,347 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Plantilla para un articulo en LaTeX en español.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass{article}
+\usepackage{listings}
+\usepackage{enumerate}
+% Esto es para poder escribir acentos directamente:
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+% Esto es para que el LaTeX sepa que el texto esta en espa\~{n}ol:
+\usepackage[spanish]{babel}
+% Paquetes de la AMS:
+\usepackage{amsmath, amsthm, amsfonts}
+%Package de alineación
+\usepackage[document]{ragged2e}
+\spanishdecimal{.}
+
+% Teoremas
+%--------------------------------------------------------------------------
+\newtheorem{thm}{Teorema}[section]
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposici\'on}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definici\'on}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Observaci\'on}
+
+% Atajos.
+% Se pueden definir comandos nuevos para acortar cosas que se usan
+% frecuentemente. Como ejemplo, aqui se definen la R y la Z dobles que
+% suelen representar a los conjuntos de numeros reales y enteros.
+%--------------------------------------------------------------------------
+
+\def\RR{\mathbb{R}}
+\def\ZZ{\mathbb{Z}}
+
+% De la misma forma se pueden definir comandos con argumentos. Por
+% ejemplo, aqui definimos un comando para escribir el valor absoluto
+% de algo mas facilmente.
+%--------------------------------------------------------------------------
+\newcommand{\abs}[1]{\left\vert#1\right\vert}
+
+% Operadores.
+% Los operadores nuevos deben definirse como tales para que aparezcan
+% correctamente. Como ejemplo definimos en jacobiano:
+%--------------------------------------------------------------------------
+\DeclareMathOperator{\Jac}{Jac}
+
+%--------------------------------------------------------------------------
+\title{Actividades sesi\'on 28 de Septiembre\\
+An\'alisis de Algoritmos II\\
+Maestr\'ia en Ciencias de la Computaci\'on\\ 
+Oto\~{n}o 2020\\
+BUAP
+}
+
+
+\author{Equipo 3\\
+  \small Erick Barrios Gonz\'alez\\
+  \small Oscar Eduardo Gonz\'alez Ramos\\
+  \small Oswaldo Jair Garc\'ia Franco
+}
+
+\begin{document}
+
+\maketitle
+\clearpage
+%\abstract{Analisis de algoritmos}
+
+\section{Ejercicios}
+Resuelva las siguientes recurrencias:\\
+\begin{enumerate}[1.]
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+1 & \mbox{si }n\mbox{ = 0}\\ 
+0 & \mbox{si }n\mbox{ = 1}\\
+5t_{n-1}-6t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = 5t_{n-1}-6t_{n-2} $$\\
+$$ t_n-5t_{n-1}+6t_{n-2}=0 $$
+2) Su polinomio caracteristico es:\\
+$$ x^{2}-5x+6=(x-2)(x-3)$$
+3) Cuyas raices son\\ 
+$$r_1=2 , r_2=3$$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(2)^{n} + C_2(3)^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}+C_{2}=1& & n=0\\
+2C_{1}+3C_{2}=0& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=3$ y $C_2=-2$
+\end{center}
+$$t_n=3(2)^{n} + (-2)3^{n} $$
+$$t_n=3(2^{n}) - 2(3^{n}) $$
+\clearpage
+
+%Para el 2do ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+6 & \mbox{si }n\mbox{ = 0}\\ 
+8 & \mbox{si }n\mbox{ = 1}\\
+4t_{n-1}-4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = 4t_{n-1}-4t_{n-2} $$\\
+$$ t_n-4t_{n-1}+4t_{n-2}=0 $$
+2) Su polinomio caracteristico es:\\
+$$ x^{2}-4x+4=(x-2)(x-2)=(x-2)^2$$
+3) Cuyas raices son\\ 
+$$r_1=2 , r_2=2$$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(2)^{n} + C_2n(2)^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}=6& & n=0\\
+2C_{1}+2C_{2}=8& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=6$ y $C_2=-2$
+\end{center}
+$$t_n=6(2)^{n} + (-2)n2^{n} $$
+$$t_n=6(2^{n}) - 2(n2^{n}) $$
+\clearpage
+
+%Para el 3er ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+0 & \mbox{si }n\mbox{ = 0}\\ 
+1 & \mbox{si }n\mbox{ = 1}\\
+-4t_{n-1}-4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = -4t_{n-1}-4t_{n-2} $$\\
+$$ t_n+4t_{n-1}+4t_{n-2}=0 $$
+2) Su polinomio caracteristico es:\\
+$$ x^{2}+4x+4=(x+2)(x+2)=(x+2)^2$$
+3) Cuyas raices son:\\ 
+$$r_1=-2 , r_2=-2$$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(-2)^{n} + C_2n(-2)^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}=0& & n=0\\
+-2C_{1}-2C_{2}=1& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=0$ y $C_2=-\frac{1}{2}$
+\end{center}
+$$t_n=0(-2)^{n} + (-\frac{1}{2})n(-2^{n}) $$
+$$t_n=-\frac{1}{2}n(-2^{n}) $$
+\clearpage
+
+
+%Para el 4to ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+0 & \mbox{si }n\mbox{ = 0}\\ 
+4 & \mbox{si }n\mbox{ = 1}\\
+4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = 4t_{n-2} $$\\
+$$ t_n-4t_{n-2}=0 $$
+2) Su polinomio caracteristico es:\\
+$$ x^{2}-4=(x+2)(x-2)$$
+3) Cuyas raices son:\\ 
+$$r_1=-2 , r_2=2$$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(-2)^{n} + C_2(2)^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}+C_{2}=0& & n=0\\
+-2C_{1}+2C_{2}=4& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=-1$ y $C_2=1$
+\end{center}
+$$t_n=2^{n} + 2^{n} $$
+$$t_n=2^{n+1} $$
+\clearpage
+
+%Para el 5to ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+3 & \mbox{si }n\mbox{ = 0}\\ 
+6 & \mbox{si }n\mbox{ = 1}\\
+t_{n-1}+6t_{n-2}  & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = t_{n-1} + 6t_{n-2} $$\\
+$$ t_n - t_{n-1} - 6t_{n-2} = 0 $$
+
+2) Su polinomio caracteristico es:\\
+$$ x^{2}-x-6=(x+2)(x-3)$$
+3) Cuyas raices son:\\ 
+$$ r_1=-2 , r_2=3 $$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(-2)^{n} + C_23^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}+C_{2}=3& & n=0\\
+-2C_{1}+3C_{2}=6& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=\frac{3}{5}$ y $C_2=\frac{12}{5}$
+\end{center}
+$$t_n=\frac{3}{5}(-2)^{n} + \frac{12}{5}3^{n} $$
+\clearpage
+
+%Para el 6to ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+3 & \mbox{si }n\mbox{ = 0}\\ 
+-3 & \mbox{si }n\mbox{ = 1}\\
+-6t_{n-1}-9t_{n-2}  & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
+$$ t_n = -6t_{n-1}-9t_{n-2} $$\\
+$$ t_n + 6t_{n-1} + 9t_{n-2} = 0 $$
+2) Su polinomio caracteristico es:\\
+$$ x^{2}+6x+9=(x+3)(x+3) = (x+3)^2$$
+3) Cuyas raices son:\\ 
+$$ r_1=-3 , r_2=-3 $$
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(-3)^{n} + C_2n(-3)^{n}$$
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}=3& & n=0\\
+-3C_{1}-3C_{2}=-3& & n=1
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=3$ y $C_2=-2$
+\end{center}
+$$t_n=3(-3)^{n} - 3n(-3)^{n} $$
+\clearpage
+
+%Para el 7timo ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+9n^{2} -15n + 106 & \mbox{si }n\mbox{ = 0,1 o 2}\\ 
+t_{n-1}+2t_{n-2}-2t_{n-3}  & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos la recurrencia \\
+$$ t_n = t_{n-1}+2t_{n-2}-2t_{n-3} $$\\
+$$ t_n-t_{n-1}-2t_{n-2}+2t_{n-3}= 0 $$\\
+2) Su polinomio caracteristico es:\\
+$$ x^{3}-x^{2}-2x+2 = (x-1)(x^{2}-2)$$\\
+3) Cuyas raices son:\\ 
+$$ r_1=1 , r_2=\sqrt{2}, r_3 =- \sqrt{2} $$\\
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(1)^{n} + C_2(\sqrt{2})^{n} + C_3(-\sqrt{2})^{n} $$\\
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}+C_{2}+C_{3}=106& & n=0\\
+C_{1}+C_{2}\sqrt{2}-C_{3}\sqrt{2}=112& & n=1\\
+C_{1}+2C_{2}+2C_{3}=112& & n=0
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=100$ , $C_2=3$ y $C_3=3 $
+\end{center}
+$$t_n=100 + 3(\sqrt{2})^{n}+ 3(-\sqrt{2})^{n} $$
+\clearpage
+
+%Para el 8vo ejercicio
+\item  $$t_n = \left \{ 
+\begin{matrix} 
+n & \mbox{si }n\mbox{ = 0,1 o 2}\\ 
+t_{n-1}+t_{n-3}-t_{n-4}  & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$
+
+1) Reescribimos la recurrencia \\
+$$ t_n = t_{n-1}+t_{n-3}-t_{n-4} $$\\
+$$ t_n-t_{n-1}-t_{n-3}+t_{n-4}= 0 $$\\
+2) Su polinomio caracteristico es:\\
+$$ x^{4}-x^{3}-x+1 = (x-1)^{2}(x^{2}+x+1)$$\\
+3) Cuyas raices son:\\ 
+$$ r_1=1 , r_2=1, r_3 =\frac{-1+ \sqrt{-3}}{2}  r_4=\frac{-1-\sqrt{-3}}{2}$$\\
+4) La soluci\'on por lo tanto es de la forma:\\
+$$t_n = C_1(1)^{n} + C_2n(1)^{n} + C_3(\frac{-1+ \sqrt{-3}}{2})^{n} + C_4(\frac{-1-\sqrt{-3}}{2})^{n}$$\\
+5) Las condiciones iniciales indican: \\
+\begin{align*}
+C_{1}+C_{3}+C_{4}=0& & n=0\\
+C_{1}+C_{2}+C_{3}\frac{-1+ \sqrt{-3}}{2} +C_{4}\frac{-1- \sqrt{-3}}{2} =1& & n=1\\
+C_{1}+2C_{2}+C_{3}(\frac{-1+ \sqrt{-3}}{2})^2 +C_{4}(\frac{-1- \sqrt{-3}}{2})^2 =1& & n=2\\
+C_{1}+3C_2 +C_{3}+C_{4}=3& & n=3\\
+\end{align*}
+6) Resolviendo las ecuaciones tenemos que:\\
+\begin{center}
+$C_1=0$ , $C_2=1$ , $C_3=0 $ y $C_4=0 $
+\end{center}
+$$t_n = (0)(1)^{n} + (1)n(1)^{n} + (0)(\frac{-1+ \sqrt{-3}}{2})^{n} + (0)(\frac{-1- \sqrt{-3}}{2})^{n}$$\\
+$$t_n = n$$\\
+\clearpage
+
+
+
+\end{enumerate}
+
+
+\clearpage
+
+\pagebreak 
+% Bibliograf\'ia.
+%-----------------------------------------------------------------
+\begin{thebibliography}{99}
+\bibitem{Mauricio2016} Lavalle Mart\'inez, Jos\'e de Jes\'us; La presentaci\'on sobre la tercera
+parte de An\'alisis de algoritmos, An\'alisis y Dise\~{n}o de Algoritmos.
+Buap, Oto\~{n}o 2020.
+
+\bibitem {notas} Jim\'enez Salazer, H\'ector y Lavalle Mart\'inez, Jos\'e de Jes\'us; An\'alisis y Dise\~{n}o de Algoritmos. Traducci\'on de partes del libro Fundamentals of Algorithmics de Brassard and Bratley FCC - BUAP, 2020.
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
