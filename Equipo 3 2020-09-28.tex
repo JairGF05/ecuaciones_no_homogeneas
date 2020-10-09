@@ -52,7 +52,7 @@
 
 %--------------------------------------------------------------------------
 \title{Actividades sesi\'on 28 de Septiembre\\
-An\'alisis de Algoritmos II\\
+An\'alisis de Algoritmos III\\
 Maestr\'ia en Ciencias de la Computaci\'on\\ 
 Oto\~{n}o 2020\\
 BUAP
@@ -72,254 +72,285 @@ BUAP
 %\abstract{Analisis de algoritmos}
 
 \section{Ejercicios}
-Resuelva las siguientes recurrencias:\\
+Resuelva las siguientes recurrencias exactamente con y sin manipulaci\'on algebraica:\\
 \begin{enumerate}[1.]
 \item  $$t_n = \left \{ 
 \begin{matrix} 
-1 & \mbox{si }n\mbox{ = 0}\\ 
-0 & \mbox{si }n\mbox{ = 1}\\
-5t_{n-1}-6t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+n + 1 & \mbox{si n = }0\mbox{ o n = 1}\\ 
+3t_{n-1}-2t_{n-2}+3 \cdot 2^{n-2} & \mbox{en}\mbox{ otro caso}\\
 \end{matrix}
-\right. $$
+\right. $$\\
 
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = 5t_{n-1}-6t_{n-2} $$\\
-$$ t_n-5t_{n-1}+6t_{n-2}=0 $$
-2) Su polinomio caracteristico es:\\
-$$ x^{2}-5x+6=(x-2)(x-3)$$
-3) Cuyas raices son\\ 
-$$r_1=2 , r_2=3$$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(2)^{n} + C_2(3)^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}+C_{2}=1& & n=0\\
-2C_{1}+3C_{2}=0& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
 \begin{center}
-$C_1=3$ y $C_2=-2$
+\textbf{Con manipulaci\'on algebraica}\\
 \end{center}
-$$t_n=3(2)^{n} + (-2)3^{n} $$
-$$t_n=3(2^{n}) - 2(3^{n}) $$
+
+Reescribimos la recurrencia: \\
+$$ t_{n}-3t_{n-1}-2t_{n-2} = 3 \cdot 2^{n-2} $$\\
+La cual es de la forma de la Ecuaci\'on (1) con $b=2$ y $p(n)=3$ un polinomio de grado 0.\\
+Reemplazamos n en la recurrencia por $n-1$ y multiplicar por $-2$\\
+$$ -2t_{n-1} + 6t_{n-2} - 4t_{n-3} = - 3 \cdot 2^{n-2}	$$
+As\'i obtenemos: \\
+$$ t_{n} - 5t_{n-1} + 8t_{n-2} - 4t_{n-3} = 0$$
+Su polinomio caracterist\'ico es:
+$$ x^{3} - 5x^{2} + 8x - 4 = (x-1)(x-2)^{2}$$
+Cuyas raices son $ r_{2} = 2 $ y $r_{1} = 2$ (ra\'ices m\'ultiples) y $r_{1}=1$\\
+
+$$t_n= C_{1} + C_{2}^{n} + C_{3}n2^{n}$$
+Si $C_{3}>0$ entonces $t_{n}$ $\epsilon$ $O(n2^{n})$\\
 \clearpage
 
-%Para el 2do ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-6 & \mbox{si }n\mbox{ = 0}\\ 
-8 & \mbox{si }n\mbox{ = 1}\\
-4t_{n-1}-4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
-
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = 4t_{n-1}-4t_{n-2} $$\\
-$$ t_n-4t_{n-1}+4t_{n-2}=0 $$
-2) Su polinomio caracteristico es:\\
-$$ x^{2}-4x+4=(x-2)(x-2)=(x-2)^2$$
-3) Cuyas raices son\\ 
-$$r_1=2 , r_2=2$$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(2)^{n} + C_2n(2)^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}=6& & n=0\\
-2C_{1}+2C_{2}=8& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
 \begin{center}
-$C_1=6$ y $C_2=-2$
+\textbf{Sin manipulaci\'on algebraica}\\
 \end{center}
-$$t_n=6(2)^{n} + (-2)n2^{n} $$
-$$t_n=6(2^{n}) - 2(n2^{n}) $$
+
+Reescribimos la recurrencia: \\
+$$ t_{n}-3t_{n-1}-2t_{n-2} = 3 \cdot 2^{n-2} $$\\
+La cual es de la forma de la Ecuaci\'on (1) con $b=2$, $p(n)=3$ y $d=0$ un polinomio de grado 0.\\
+As\'i su polinomio caracter\'istico es:\\
+$$ (x-2)^{2}(x-1) $$
+Cuyas raices son $ r_{2} = 2 $ y $r_{1} = 2$ (ra\'ices m\'ultiples) y $r_{1}=1$\\
+$$t_n= C_{1} + C_{2}^{n} + C_{3}n2^{n}$$
+Si $C_{3}>0$ entonces $t_{n}$ $\epsilon$ $O(n2^{n})$\\
+Si sustituimos la Ecuaci\'on en la recurrencia original, obtenemos:\\
+$$3 \cdot 2^{n-2} = (C_{1}+C_{2}^{n}+C_{3}n2^{n}) - 3(C_{1}+C_{2}^{n-1}+C_{3}(n-1)2^{n-1})$$
+$$3 \cdot 2^{n-2} = \frac{C_{3}2^{n}}{2}$$
+$$3 = \frac{C_{3}2^{n}}{2} \cdot \frac{1}{2^{n-2}}$$
+$$3 = 2C_{3}$$ 
+Por lo tanto\\
+$$C_{3}=\frac{3}{2}$$
+\clearpage
+
+
+
+%Para el 2do ejercicio
+\item  $$T(n)= \left \{ 
+\begin{matrix} 
+a & \mbox{si n = }0\mbox{ o n = 1}\\ 
+T(n-1)+T(n-2)+C & \mbox{en}\mbox{ otro caso}\\
+\end{matrix}
+\right. $$\\
+
+\begin{center}
+\textbf{Con manipulaci\'on algebraica}\\
+\end{center}
+
+Reescribimos la recurrencia: \\
+$$ T(n)-T(n-1)-T(n-2)-C $$\\
+$$ T(n)-T(n-1)-T(n-2)=C $$\\
+La cual es de la forma de la Ecuaci\'on (1) con $b=1$ y $p(n)=1$ un polinomio de grado 0.\\
+Formando la nueva ecuaci\'on
+$$ T(n)-T(n-1)-T(n-2)=C $$\\
+Multiplicando por $-1$ y remplazando $n$ por $n-1$\\
+$$ -T(n-1)+T(n-2)+T(n-3)=-C $$\\
+As\'i obtenemos:\\
+$ T(n)-T(n-1)-T(n-2)~~~~~~~~~~~~~~~=C $\\
+$ ~~~~~~-T(n-1)+T(n-2)+T(n-3)=-C$\\
+\rule{80mm}{0.1mm}\\
+Sumando estas dos ecuaciones tenemos: \\
+$$ T(n)-2T(n-1)+T(n-3)=0 $$\\
+As\'i su polinomio caracter\'istico es:\\
+$$ x^{3}-2x^{2}+1=0 $$
+Cuyas raices son $ r_{1} = \frac{1+\sqrt{5}}{2} $, $ r_{2} = \frac{1-\sqrt{5}}{2}$, $r_{3}=1$ y $\theta=\frac{1+\sqrt{5}}{2}$\\
+As\'i: \\
+$$T(n) = C_{1}(\frac{1+\sqrt{5}}{2})^{n} + C_{2}(\frac{1-\sqrt{5}}{2})^{n} + C_{3} ~~~~~~~~(2)$$
+\clearpage
+
+\begin{center}
+\textbf{Sin manipulaci\'on algebraica}\\
+\end{center}
+
+Sustituyendo (2) en la recurrencia original $T(n)-T(n-1)-T(n-2)=C$\\
+$$T(n)=C_{1}\theta^{n} + C_{2}(\frac{1-\sqrt{5}}{2})^{n} + C_{3}$$
+$$C=(C_{1}\theta^{n} + C_{2}(\frac{1-\sqrt{5}}{2})^{n} + C_{3})-(C_{1}\theta^{n-1} + C_{2}(\frac{1-\sqrt{5}}{2})^{n-1} + C_{3})-(C_{1}\theta^{n-2} + C_{2}(\frac{1-\sqrt{5}}{2})^{n-2} + C_{3})$$
+$$C=C_{1}(\theta^{n}-\theta^{n-1}-\theta^{n-2})+C_{2}((\frac{1-\sqrt{5}}{2})^{n}-(\frac{1-\sqrt{5}}{2})^{n-1}-(\frac{1-\sqrt{5}}{2})^{n-2})+C_{3}(1-1-1)$$
+\rule{130mm}{0.1mm}\\
+$$C_{1}+C_{2}+C_{3}=0$$
+$$C_{1}\theta + C_{2}(\frac{1-\sqrt{5}}{2}) + C_{3}=1$$
+$$C_{1}\theta^{2} + C_{2}(\frac{1-\sqrt{5}}{2})^{2} + C_{3}=1$$
+ $\theta=\frac{1+\sqrt{5}}{2}$
+ 
+$$C_{1}=\frac{3\sqrt{5}}{10}+\frac{1}{2}$$
+$$C_{2}=-\frac{3\sqrt{5}}{10}+\frac{1}{2}$$
+$$C_{3} = 1 $$
 \clearpage
 
 %Para el 3er ejercicio
-\item  $$t_n = \left \{ 
+\item  $$T(n)= \left \{ 
 \begin{matrix} 
-0 & \mbox{si }n\mbox{ = 0}\\ 
-1 & \mbox{si }n\mbox{ = 1}\\
--4t_{n-1}-4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
+a & \mbox{si n = }0\mbox{ o n = 1}\\ 
+T(n-1)+T(n-2)+Cn & \mbox{en}\mbox{ otro caso}\\
 \end{matrix}
-\right. $$
+\right. $$\\
 
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = -4t_{n-1}-4t_{n-2} $$\\
-$$ t_n+4t_{n-1}+4t_{n-2}=0 $$
-2) Su polinomio caracteristico es:\\
-$$ x^{2}+4x+4=(x+2)(x+2)=(x+2)^2$$
-3) Cuyas raices son:\\ 
-$$r_1=-2 , r_2=-2$$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(-2)^{n} + C_2n(-2)^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}=0& & n=0\\
--2C_{1}-2C_{2}=1& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
 \begin{center}
-$C_1=0$ y $C_2=-\frac{1}{2}$
+\textbf{Con manipulaci\'on algebraica}\\
 \end{center}
-$$t_n=0(-2)^{n} + (-\frac{1}{2})n(-2^{n}) $$
-$$t_n=-\frac{1}{2}n(-2^{n}) $$
+
+Reescribimos la recurrencia: \\
+$$ T(n)-T(n-1)-T(n-2)-Cn $$\\
+Formando la nueva ecuaci\'on
+$$ T(n)-T(n-1)-T(n-2)=Cn $$\\
+Multiplicando por $-1$ y remplazando $n$ por $n-1$\\
+
+$$ T(n)-T(n-1)-T(n-2)~~~~~~~~~~~~~~~~~~=Cn $$\\
+$$ ~~~~~~~~~~~~~~-T(n-1)+T(n-2)+T(n-3)=-Cn + C $$\\
+Sumando las ecuaciones tenemos:\\
+$$ T(n)-2T(n-1)+T(n-3)= -C $$\\
+Multiplicando por $-1$ y remplazando $n$ por $n-1$ en la nueva ecuaci\'on\\
+$$ -T(n-1)+2T(n-2)+T(n-4)=-C $$\\
+Sumando las ecuaciones tenemos:\\
+$$ T(n)-3T(n-1)+2T(n-2)+T(n-3)-T(n-4)= 0 $$\\
+As\'i su polinomio caracter\'istico es:\\
+$$ x^{4}-3x^{3}+2x^{2}+x-1= (x-1)^{2}(x^{2}-x-1)$$
+Cuyas raices son $r_{1}=1$, $r_{2}=1$ de multiplicidad 2, $r_{3}=\frac{1+\sqrt{5}}{2}$ y $r_{4}=\frac{1-\sqrt{5}}{2}$\\
+As\'i: \\
+$$T(n)= C_{1}+C_{2}+C_{3}\theta^{n}+C_{4}(\frac{1-\sqrt{5}}{2})^n$$
+Sustituyendo en la recurrencia original\\
+$$C_{1}+nC_{2}+C_{3}\theta^{n}+C_{4}(\frac{1-\sqrt{5}}{2})^n - C_{1}-(n-1)C_{2}-C_{3}\theta^{n-1}-C_{4}(\frac{1-\sqrt{5}}{2})^{n-1}-$$
+$$C_{1}-(n-2)C_{2}-C_{3}\theta^{n-2}-C_{4}(\frac{1-\sqrt{5}}{2})^n$$
+\clearpage
+
+\begin{center}
+\textbf{Sin manipulaci\'on algebraica}\\
+\end{center}
+
+$$T(n)-T(n-1)-T(n-2)=Cn$$\\
+La cual es de la forma de la Ecuaci\'on (1) con $b=1$, $p(n)=n$ y $d=1$ un polinomio de grado 1.\\
+As\'i su polinomio caracter\'istico es:\\
+$$(x^{2}-x-1)(x-1)^{2}$$
+Cuyas raices son $r_{1}=\frac{1+\sqrt{5}}{2}$ y $r_{2}=\frac{1-\sqrt{5}}{2}$ $r_{3}=1$, $r_{4}=1$ de multiplicidad 2, \\
+Entonces \\
+$$T(n)= C_{1}\Theta^{n}+C_{2}(\frac{1-\sqrt{5}}{2}^{n})+C_{3}+C_{4}n$$
 \clearpage
 
 
 %Para el 4to ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-0 & \mbox{si }n\mbox{ = 0}\\ 
-4 & \mbox{si }n\mbox{ = 1}\\
-4t_{n-2} & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
+\item  $a_{n}=a_{n-1}+n+2,~~~~~a_{0}=0$
 
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = 4t_{n-2} $$\\
-$$ t_n-4t_{n-2}=0 $$
-2) Su polinomio caracteristico es:\\
-$$ x^{2}-4=(x+2)(x-2)$$
-3) Cuyas raices son:\\ 
-$$r_1=-2 , r_2=2$$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(-2)^{n} + C_2(2)^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}+C_{2}=0& & n=0\\
--2C_{1}+2C_{2}=4& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
 \begin{center}
-$C_1=-1$ y $C_2=1$
+\textbf{Con manipulaci\'on algebraica}\\
 \end{center}
-$$t_n=2^{n} + 2^{n} $$
-$$t_n=2^{n+1} $$
+
+Reescribimos la recurrencia: \\
+$$a_{n}-a_{n-1}=n+2$$
+Multiplicando por $-1$ y remplazando $n$ por $n-1$\\
+$$-a_{n-1}+a_{n-2}=-n-1$$
+
+Sumando las ecuaciones tenemos:\\
+$$a_{n}-a_{n-1}~~~~~~~~~~~=n+2$$
++
+$$~~~~~~~-a_{n-1}+a_{n-2}=-n-1$$
+\rule{130mm}{0.1mm}\\
+$$a_{n}-2a_{n-1}+a_{n-2}=1$$
+Multiplicando por $-1$ y remplazando $n$ por $n-1$ en la nueva ecuaci\'on\\
+$$-a_{n-1}+2a_{n-2}-a_{n-3}=-1$$
+Sumando las ecuaciones anteriotres tenemos:\\
+$$a_{n}-2a_{n-1}+a_{n-2}~~~~~~~~~~=1$$
++
+$$~~~~~~-a_{n-1}+2a_{n-2}-a_{n-3}=-1$$
+\rule{130mm}{0.1mm}\\
+$$a_{n}-3a_{n-1}+3a_{n-2}-a_{n-3}=0$$
+As\'i su polinomio caracter\'istico es:\\
+$$ x^{3}-3x^{2}+3x-1= (x-1)^{3}$$
+Cuya ra\'iz es $r_{1}=1$ de multiplicidad 3\\
+Por lo tanto todas las soluciones son de la forma:\\
+$$a_{n}=C_{1}+C_{2}n+C_{3}n^{2}$$
 \clearpage
+La soluci\'on general se encuentra resolviendo el siguiente sistema de ecuaciones lineales.\\
+$$C_{1}=0~~~~~~~~~~~~~~~~~~~~~n=0$$
+$$C_{1}+C_{2}+C_{3}=1~~~~~~~n=1$$
+$$C_{1}+2C_{2}+4C_{3}=2~~~~~n=2$$
+Donde obtenemos que:\\
+$$C_{1}=0, C_{2}=1,  C_{3}=0$$
+\clearpage
+
+
+
+\begin{center}
+\textbf{Sin manipulaci\'on algebraica}\\
+\end{center}
+
+Reescribimos la recurrencia: \\
+$$a_{n}-a_{n-1}=n+2$$
+En este caso, $b=1$ y $p(n)=n$\\
+As\'i su polinomio caracter\'istico es:\\
+$$(x-1)^{3}(x-2)$$
+Cuyas raices son $r_{1}=2$ y $r_{2}=1$ de multiplicidad 3 \\
+Por lo tanto todas las soluciones son de la forma:\\
+$$a_{n}=C_{1}2^{n}+C_{2}1^{n}+C_{3}n1^{n}+C_{4}n^{2}1^{n} $$
+$$a_{n}=C_{1}2^{n}+C_{2}+C_{3}n+C_{4}n^{2}$$
+Sustituyendo en la recurrencia original\\
+$$n+2= a_{n}-a_{n-1}$$
+$$n+2=(C_{1}2^{n}+C_{2}+C_{3}n+C_{4}n^{2})-(C_{1}2^{n-1}+C_{2}+C_{3}(n-1)+C_{4}(n^{2}-2_{n}+1))$$
+$$n+2=C_{1}(2^{n} - 2^{n-1})+C_{3}(n-n+1)+C_{4}(n^{2}-2n+1) $$
+$$n+2=C_{1}2^{n-2}+C_{3}+C_{4}(2^{n})-C_{4}$$
+\clearpage
+
+
 
 %Para el 5to ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-3 & \mbox{si }n\mbox{ = 0}\\ 
-6 & \mbox{si }n\mbox{ = 1}\\
-t_{n-1}+6t_{n-2}  & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
+\item  $a_{n}=a_{n-1}+7n,~~~~~a_{0}=0$
 
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = t_{n-1} + 6t_{n-2} $$\\
-$$ t_n - t_{n-1} - 6t_{n-2} = 0 $$
-
-2) Su polinomio caracteristico es:\\
-$$ x^{2}-x-6=(x+2)(x-3)$$
-3) Cuyas raices son:\\ 
-$$ r_1=-2 , r_2=3 $$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(-2)^{n} + C_23^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}+C_{2}=3& & n=0\\
--2C_{1}+3C_{2}=6& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
 \begin{center}
-$C_1=\frac{3}{5}$ y $C_2=\frac{12}{5}$
+\textbf{Con manipulaci\'on algebraica}\\
 \end{center}
-$$t_n=\frac{3}{5}(-2)^{n} + \frac{12}{5}3^{n} $$
+
+Reescribimos la recurrencia: \\
+$$a_{n}-a_{n-1}=7n$$
+Multiplicando por $-1$ y remplazando $n$ por $n-1$\\
+$$-a_{n-1}+a_{n-2}=7n+7$$
+
+Sumando las ecuaciones tenemos:\\
+$$a_{n}-a_{n-1}~~~~~~~~~~=7n$$
++
+$$~~~~~~~-a_{n-1}+a_{n-2}=7n+7$$
+\rule{130mm}{0.1mm}\\
+$$a_{n}-2a_{n-1}+a_{n-2}=7$$
+Multiplicando por $-1$ y remplazando $n$ por $n-1$ en la nueva ecuaci\'on\\
+$$-a_{n-1}+3a_{n-2}-a_{n-3}=-7$$
+Sumando las ecuaciones anteriotres tenemos:\\
+$$a_{n}-2a_{n-1}+a_{n-2}~~~~~~~~~~=7$$
++
+$$~~~~~~-a_{n-1}+3a_{n-2}-a_{n-3}=-7$$
+\rule{130mm}{0.1mm}\\
+$$a_{n}-3a_{n-1}+3a_{n-2}-a_{n-3}=0$$
+As\'i su polinomio caracter\'istico es:\\
+$$ x^{3}-3x^{2}+3x-1= (x-1)^{3}$$
+Cuya ra\'iz es $r_{1}=1$ de multiplicidad 3\\
+Por lo tanto todas las soluciones son de la forma:\\
+$$a_{n}=C_{1}+C_{2}n+C_{3}n^{2}$$
+\clearpage
+La soluci\'on general se encuentra resolviendo el siguiente sistema de ecuaciones lineales.\\
+$$C_{1}=0~~~~~~~~~~~~~~~~~~~~~n=0$$
+$$C_{1}+C_{2}+C_{3}=1~~~~~~~n=1$$
+$$C_{1}+2C_{2}+4C_{3}=2~~~~~n=2$$
+Donde obtenemos que:\\
+$$C_{1}=0, C_{2}=1,  C_{3}=0$$
+
+\clearpage
+\begin{center}
+\textbf{Sin manipulaci\'on algebraica}\\
+\end{center}
+
+Reescribimos la recurrencia: \\
+$$a_{n}-a_{n-1}=7$$
+En este caso, $b=7$ , $p(n)=n$ y d=1\\
+As\'i su polinomio caracter\'istico es:\\
+$$(x-1)(x-7)^{2}$$
+Cuyas raices son $r_{1}=1$ , $r_{2}=7$ y $r_{3}=7$ de multiplicidad 2 \\
+Por lo tanto todas las soluciones son de la forma:\\
+$$a_{n}=C_{1}+C_{2}7^{n}+C_{3}n7^{n} $$
+La soluci\'on general se encuentra resolviendo el siguiente sistema de ecuaciones lineales.\\
+$$C_{1}+C_{2}+0=0~~~~~~~~~~~~~n=0$$
+$$C_{1}+7C_{2}+7C_{3}=1~~~~~~~~n=1$$
+$$C_{1}+49C_{2}+98C_{3}=2~~~~~n=2$$
+Donde obtenemos que:\\
+$$C_{1}=-\frac{1}{3}, C_{2}=\frac{1}{3},  C_{3}=-\frac{1}{7}$$
+Por lo tanto\\
+$$a_{n}=-\frac{1}{3}+(\frac{1}{3})7^{n}+n7^{n-1}$$
 \clearpage
 
-%Para el 6to ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-3 & \mbox{si }n\mbox{ = 0}\\ 
--3 & \mbox{si }n\mbox{ = 1}\\
--6t_{n-1}-9t_{n-2}  & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
-
-1) Reescribimos esta recurrencia de la forma de la Ecuaci\'on (1) \\
-$$ t_n = -6t_{n-1}-9t_{n-2} $$\\
-$$ t_n + 6t_{n-1} + 9t_{n-2} = 0 $$
-2) Su polinomio caracteristico es:\\
-$$ x^{2}+6x+9=(x+3)(x+3) = (x+3)^2$$
-3) Cuyas raices son:\\ 
-$$ r_1=-3 , r_2=-3 $$
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(-3)^{n} + C_2n(-3)^{n}$$
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}=3& & n=0\\
--3C_{1}-3C_{2}=-3& & n=1
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
-\begin{center}
-$C_1=3$ y $C_2=-2$
-\end{center}
-$$t_n=3(-3)^{n} - 3n(-3)^{n} $$
-\clearpage
-
-%Para el 7timo ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-9n^{2} -15n + 106 & \mbox{si }n\mbox{ = 0,1 o 2}\\ 
-t_{n-1}+2t_{n-2}-2t_{n-3}  & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
-
-1) Reescribimos la recurrencia \\
-$$ t_n = t_{n-1}+2t_{n-2}-2t_{n-3} $$\\
-$$ t_n-t_{n-1}-2t_{n-2}+2t_{n-3}= 0 $$\\
-2) Su polinomio caracteristico es:\\
-$$ x^{3}-x^{2}-2x+2 = (x-1)(x^{2}-2)$$\\
-3) Cuyas raices son:\\ 
-$$ r_1=1 , r_2=\sqrt{2}, r_3 =- \sqrt{2} $$\\
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(1)^{n} + C_2(\sqrt{2})^{n} + C_3(-\sqrt{2})^{n} $$\\
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}+C_{2}+C_{3}=106& & n=0\\
-C_{1}+C_{2}\sqrt{2}-C_{3}\sqrt{2}=112& & n=1\\
-C_{1}+2C_{2}+2C_{3}=112& & n=0
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
-\begin{center}
-$C_1=100$ , $C_2=3$ y $C_3=3 $
-\end{center}
-$$t_n=100 + 3(\sqrt{2})^{n}+ 3(-\sqrt{2})^{n} $$
-\clearpage
-
-%Para el 8vo ejercicio
-\item  $$t_n = \left \{ 
-\begin{matrix} 
-n & \mbox{si }n\mbox{ = 0,1 o 2}\\ 
-t_{n-1}+t_{n-3}-t_{n-4}  & \mbox{en}\mbox{ otro caso}\\
-\end{matrix}
-\right. $$
-
-1) Reescribimos la recurrencia \\
-$$ t_n = t_{n-1}+t_{n-3}-t_{n-4} $$\\
-$$ t_n-t_{n-1}-t_{n-3}+t_{n-4}= 0 $$\\
-2) Su polinomio caracteristico es:\\
-$$ x^{4}-x^{3}-x+1 = (x-1)^{2}(x^{2}+x+1)$$\\
-3) Cuyas raices son:\\ 
-$$ r_1=1 , r_2=1, r_3 =\frac{-1+ \sqrt{-3}}{2}  r_4=\frac{-1-\sqrt{-3}}{2}$$\\
-4) La soluci\'on por lo tanto es de la forma:\\
-$$t_n = C_1(1)^{n} + C_2n(1)^{n} + C_3(\frac{-1+ \sqrt{-3}}{2})^{n} + C_4(\frac{-1-\sqrt{-3}}{2})^{n}$$\\
-5) Las condiciones iniciales indican: \\
-\begin{align*}
-C_{1}+C_{3}+C_{4}=0& & n=0\\
-C_{1}+C_{2}+C_{3}\frac{-1+ \sqrt{-3}}{2} +C_{4}\frac{-1- \sqrt{-3}}{2} =1& & n=1\\
-C_{1}+2C_{2}+C_{3}(\frac{-1+ \sqrt{-3}}{2})^2 +C_{4}(\frac{-1- \sqrt{-3}}{2})^2 =1& & n=2\\
-C_{1}+3C_2 +C_{3}+C_{4}=3& & n=3\\
-\end{align*}
-6) Resolviendo las ecuaciones tenemos que:\\
-\begin{center}
-$C_1=0$ , $C_2=1$ , $C_3=0 $ y $C_4=0 $
-\end{center}
-$$t_n = (0)(1)^{n} + (1)n(1)^{n} + (0)(\frac{-1+ \sqrt{-3}}{2})^{n} + (0)(\frac{-1- \sqrt{-3}}{2})^{n}$$\\
-$$t_n = n$$\\
-\clearpage
 
 
 
